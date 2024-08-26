@@ -19,6 +19,8 @@ struct FLOW_API FFlowNodeSaveData
 
 	friend FArchive& operator<<(FArchive& Ar, FFlowNodeSaveData& InNodeData)
 	{
+		Ar << InNodeData.NodeGuid;
+		Ar << InNodeData.NodeData;
 		return Ar;
 	}
 };
@@ -42,6 +44,10 @@ struct FLOW_API FFlowAssetSaveData
 
 	friend FArchive& operator<<(FArchive& Ar, FFlowAssetSaveData& InAssetData)
 	{
+		Ar << InAssetData.WorldName;
+		Ar << InAssetData.InstanceName;
+		Ar << InAssetData.AssetData;
+		Ar << InAssetData.NodeRecords;
 		return Ar;
 	}
 };
@@ -62,6 +68,9 @@ struct FLOW_API FFlowComponentSaveData
 
 	friend FArchive& operator<<(FArchive& Ar, FFlowComponentSaveData& InComponentData)
 	{
+		Ar << InComponentData.WorldName;
+		Ar << InComponentData.ActorInstanceName;
+		Ar << InComponentData.ComponentData;
 		return Ar;
 	}
 };
