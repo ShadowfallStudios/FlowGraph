@@ -43,11 +43,11 @@ class FLOWEDITOR_API UFlowGraphSettings : public UDeveloperSettings
 
 	/** Use this class to create new assets. Class picker will show up if None */
 	UPROPERTY(EditAnywhere, config, Category = "Default UI")
-	TSubclassOf<class UFlowAsset> DefaultFlowAssetClass;
+	TSoftClassPtr<class UFlowAsset> DefaultFlowAssetClass;
 
 	/** Flow Asset class allowed to be assigned via Level Editor toolbar*/
 	UPROPERTY(EditAnywhere, config, Category = "Default UI", meta = (EditCondition = "bShowAssetToolbarAboveLevelEditor"))
-	TSubclassOf<class UFlowAsset> WorldAssetClass;
+	TSoftClassPtr<class UFlowAsset> WorldAssetClass;
 
 	/** Hide specific nodes from the Flow Palette without changing the source code.
 	* Requires restart after making a change. */

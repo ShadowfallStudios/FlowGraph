@@ -46,7 +46,7 @@ void SLevelEditorFlow::CreateFlowWidget()
 			.AutoWidth()
 			[
 				SNew(SObjectPropertyEntryBox)
-					.AllowedClass(UFlowGraphSettings::Get()->WorldAssetClass)
+					.AllowedClass(UFlowGraphSettings::Get()->WorldAssetClass.LoadSynchronous())
 					.DisplayThumbnail(false)
 					.OnObjectChanged(this, &SLevelEditorFlow::OnFlowChanged)
 					.ObjectPath(this, &SLevelEditorFlow::GetFlowAssetPath) // needs function to automatically refresh view upon data change
