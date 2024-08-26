@@ -75,7 +75,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "FlowSubsystem", meta = (DefaultToSelf = "Owner"))
 	virtual void StartRootFlow(UObject* Owner, UFlowAsset* FlowAsset, const bool bAllowMultipleInstances = true);
 
-	virtual UFlowAsset* CreateRootFlow(UObject* Owner, UFlowAsset* FlowAsset, const bool bAllowMultipleInstances = true);
+	virtual UFlowAsset* CreateRootFlow(UObject* Owner, UFlowAsset* FlowAsset, const bool bAllowMultipleInstances = true, FString NewInstanceName = FString());
 
 	/* Finish Policy value is read by Flow Node
 	 * Nodes have opportunity to terminate themselves differently if Flow Graph has been aborted
