@@ -49,10 +49,7 @@ protected:
 
 public:
 	virtual void ForceFinishNode() override;
-
-protected:
-	virtual void OnLoad_Implementation() override;
-
+	virtual FString GetSavedAssetInstanceName() const { return SavedAssetInstanceName; }
 
 #if WITH_EDITORONLY_DATA
 protected:

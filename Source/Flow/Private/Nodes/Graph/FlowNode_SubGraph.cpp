@@ -93,15 +93,6 @@ void UFlowNode_SubGraph::ForceFinishNode()
 	TriggerFirstOutput(true);
 }
 
-void UFlowNode_SubGraph::OnLoad_Implementation()
-{
-	if (!SavedAssetInstanceName.IsEmpty() && !Asset.IsNull())
-	{
-		GetFlowSubsystem()->LoadSubFlow(this, SavedAssetInstanceName);
-		SavedAssetInstanceName = FString();
-	}
-}
-
 #if WITH_EDITOR
 
 FText UFlowNode_SubGraph::GetNodeTitle() const
