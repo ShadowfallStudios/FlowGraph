@@ -109,7 +109,7 @@ FString UFlowNode_SubGraph::GetNodeDescription() const
 {
 	if (!UFlowSettings::Get()->bUseAdaptiveNodeTitles && !Asset.IsNull())
 	{
-		return Asset.ToSoftObjectPath().GetAssetName();
+		return Asset.ToSoftObjectPath().GetAssetName() + (SubGraphTags.IsValid() ? LINE_TERMINATOR + GetIdentityTagsDescription(SubGraphTags) : FString());
 	}
 
 	return Super::GetNodeDescription();;

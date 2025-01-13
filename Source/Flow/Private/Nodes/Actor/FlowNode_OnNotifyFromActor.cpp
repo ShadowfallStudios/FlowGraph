@@ -35,7 +35,7 @@ void UFlowNode_OnNotifyFromActor::ForgetActor(TWeakObjectPtr<AActor> Actor, TWea
 
 void UFlowNode_OnNotifyFromActor::OnNotifyFromComponent(UFlowComponent* Component, const FGameplayTag& Tag)
 {
-	if (Component->IdentityTags.HasAnyExact(IdentityTags) && (!NotifyTags.IsValid() || NotifyTags.HasTagExact(Tag)))
+	if (Component->IdentityTags.HasAnyExact(GetIdentityTags()) && (!NotifyTags.IsValid() || NotifyTags.HasTagExact(Tag)))
 	{
 		OnEventReceived();
 	}
@@ -44,6 +44,6 @@ void UFlowNode_OnNotifyFromActor::OnNotifyFromComponent(UFlowComponent* Componen
 #if WITH_EDITOR
 FString UFlowNode_OnNotifyFromActor::GetNodeDescription() const
 {
-	return GetIdentityTagsDescription(IdentityTags) + LINE_TERMINATOR + GetNotifyTagsDescription(NotifyTags);
+	return (bUseSubGraphTagsForIdentity ? FString(TEXT("Subgraph tags")) : GetIdentityTagsDescription(GetIdentityTags())) + LINE_TERMINATOR + GetNotifyTagsDescription(NotifyTags);
 }
 #endif

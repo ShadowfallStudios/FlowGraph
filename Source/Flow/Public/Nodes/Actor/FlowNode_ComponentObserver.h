@@ -22,6 +22,9 @@ class FLOW_API UFlowNode_ComponentObserver : public UFlowNode
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "ObservedComponent")
+	bool bUseSubGraphTagsForIdentity = false;
+
+	UPROPERTY(EditAnywhere, Category = "ObservedComponent", meta=(EditCondition = "!bUseSubGraphTagsForIdentity"))
 	FGameplayTagContainer IdentityTags;
 
 	// Container A: Identity Tags in Flow Component
@@ -66,6 +69,8 @@ protected:
 	virtual void OnEventReceived();
 
 	virtual void Cleanup() override;
+
+	virtual FGameplayTagContainer GetIdentityTags() const;
 
 #if WITH_EDITOR
 public:
