@@ -32,6 +32,13 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Graph")
 	bool bCanInstanceIdenticalAsset;
 
+	/*
+	 * Gameplay tags to share across all nodes in this subgraph. Useful to reduce duplicate nodes for multiplayer logic,
+	 * where a flow setup should work individually for all players. This value shouldn't be changed during runtime, as it's not saved/loaded.
+	 */
+	 UPROPERTY(EditAnywhere, Category = "Graph")
+	 FGameplayTagContainer SubGraphTags;
+
 	UPROPERTY(SaveGame)
 	FString SavedAssetInstanceName;
 
@@ -47,6 +54,7 @@ protected:
 public:
 	virtual void ForceFinishNode() override;
 	virtual FString GetSavedAssetInstanceName() const { return SavedAssetInstanceName; }
+	virtual FGameplayTagContainer GetSubGraphTags() const { return SubGraphTags; }
 
 #if WITH_EDITORONLY_DATA
 
