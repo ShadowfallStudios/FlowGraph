@@ -37,10 +37,6 @@
 		{
 			"Name": "EngineAssetDefinitions",
 			"Enabled": true
-		},
-		{
-			"Name": "StructUtils",
-			"Enabled": true
 		}
 	]
 }
