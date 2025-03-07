@@ -334,10 +334,10 @@ protected:
 
 protected:
 	void Deactivate();
-
+public:
 	virtual void TriggerFirstOutput(const bool bFinish) override;
 	virtual void TriggerOutput(FName PinName, const bool bFinish = false, const EFlowPinActivationType ActivationType = EFlowPinActivationType::Default) override;
-public:
+
 	virtual void Finish() override;
 
 private:
