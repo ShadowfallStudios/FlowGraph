@@ -53,7 +53,7 @@ class FLOW_API UFlowComponent : public UActorComponent, public IFlowOwnerInterfa
 //////////////////////////////////////////////////////////////////////////
 // Identity Tags
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, ReplicatedUsing = OnRep_IdentityTags, Category = "Flow")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, ReplicatedUsing = OnRep_IdentityTags, Category = "Flow", meta = (Categories = "Flow"))
 	FGameplayTagContainer IdentityTags;
 
 public:
