@@ -314,6 +314,8 @@ public:
 	// Called by owning FlowNode to add to its Status String.
 	// (may be multi-line)
 	virtual FString GetStatusString() const;
+
+	virtual void DrawDebug(UWorld* World) const { };
 #endif // WITH_EDITOR
 
 protected:

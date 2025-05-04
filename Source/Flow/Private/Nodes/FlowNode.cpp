@@ -1098,4 +1098,9 @@ AActor* UFlowNode::GetActorToFocus()
 {
 	return K2_GetActorToFocus();
 }
+
+FBox UFlowNode::GetBoxToFocus()
+{
+	return FBox();
+}
 #endif

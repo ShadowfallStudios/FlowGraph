@@ -1,8 +1,11 @@
 // Copyright https://github.com/MothCocoon/FlowGraph/graphs/contributors
 
 #include "Nodes/Actor/FlowNode_ComponentObserver.h"
+
+#include "EngineUtils.h"
 #include "FlowAsset.h"
 #include "FlowSubsystem.h"
+#include "Kismet/GameplayStatics.h"
 #include "Nodes/Graph/FlowNode_SubGraph.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlowNode_ComponentObserver)
@@ -193,5 +196,38 @@ FString UFlowNode_ComponentObserver::GetStatusString() const
 	}
 
 	return FString();
+}
+
+AActor* UFlowNode_ComponentObserver::GetActorToFocus()
+{
+	if (GEditor->PlayWorld)
+	{
+		if (!RegisteredActors.IsEmpty())
+		{
+			return RegisteredActors.begin().Key().Get();
+		}
+	}
+
+	if (UWorld* SearchTargetWorld = GEditor->PlayWorld ? GEditor->PlayWorld : GWorld)
+	{
+		// Search editor world existing actors for the component with matching tags, focus on first found actor
+		for (TActorIterator<AActor> It(SearchTargetWorld); It; ++It)
+		{
+			AActor* Actor = *It;
+			if (!Actor) continue;
+
+			TArray<UFlowComponent*> FoundComponents;
+			Actor->GetComponents<UFlowComponent>(FoundComponents);
+
+			for (UFlowComponent* FoundComponent : FoundComponents)
+			{
+				if (FoundComponent && FlowTypes::HasMatchingTags(FoundComponent->IdentityTags, GetIdentityTags(), IdentityMatchType) == true)
+				{
+					return FoundComponent->GetOwner();
+				}
+			}
+		}
+	}
+	return nullptr;
 }
 #endif

@@ -78,5 +78,7 @@ public:
 	virtual EDataValidationResult ValidateNode() override;
 
 	virtual FString GetStatusString() const override;
+
+	virtual AActor* GetActorToFocus() override;
 #endif
 };
