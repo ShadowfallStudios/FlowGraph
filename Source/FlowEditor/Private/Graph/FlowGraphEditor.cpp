@@ -1542,8 +1542,7 @@ void SFlowGraphEditor::FocusViewport() const
 	// Iterator used but should only contain one node
 	for (const UFlowGraphNode* SelectedNode : GetSelectedFlowNodes())
 	{
-		const UFlowNode* FlowNode = Cast<UFlowNode>(SelectedNode->GetFlowNodeBase());
-		if (UFlowNode* InspectedInstance = FlowNode->GetInspectedInstance())
+		if (UFlowNode* InspectedInstance = Cast<UFlowNode>(SelectedNode->GetFlowNodeBase()))
 		{
 			if (AActor* ActorToFocus = InspectedInstance->GetActorToFocus())
 			{
@@ -1558,6 +1557,21 @@ void SFlowGraphEditor::FocusViewport() const
 				if (LevelEditorTab.IsValid())
 				{
 					LevelEditorTab->DrawAttention();
+				}
+			}
+			else
+			{
+				FBox BoxToFocus = InspectedInstance->GetBoxToFocus();
+				if (BoxToFocus.IsValid)
+				{
+					GEditor->MoveViewportCamerasToBox(BoxToFocus, false);
+
+					const FLevelEditorModule& LevelEditorModule = FModuleManager::LoadModuleChecked<FLevelEditorModule>("LevelEditor");
+					const TSharedPtr<SDockTab> LevelEditorTab = LevelEditorModule.GetLevelEditorInstanceTab().Pin();
+					if (LevelEditorTab.IsValid())
+					{
+						LevelEditorTab->DrawAttention();
+					}
 				}
 			}
 		}

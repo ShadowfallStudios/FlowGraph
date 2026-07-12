@@ -822,8 +822,7 @@ bool UFlowGraphNode::IsContentPreloaded() const
 
 bool UFlowGraphNode::CanFocusViewport() const
 {
-	UFlowNode* FlowNode = Cast<UFlowNode>(NodeInstance);
-	return FlowNode ? (GEditor->bIsSimulatingInEditor && FlowNode->GetActorToFocus()) : false;
+	return NodeInstance != nullptr;
 }
 
 bool UFlowGraphNode::CanJumpToDefinition() const

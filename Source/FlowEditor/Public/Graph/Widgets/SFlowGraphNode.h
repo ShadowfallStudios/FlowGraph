@@ -80,6 +80,7 @@ protected:
 
 	// SWidget
 	virtual FReply OnMouseButtonDown(const FGeometry& SenderGeometry, const FPointerEvent& MouseEvent) override;
+	virtual void Tick(const FGeometry& AllottedGeometry, const double InCurrentTime, const float InDeltaTime) override;
 	// --
 
 	FSlateColor GetNodeTitleColor() const;

@@ -459,6 +459,7 @@ public:
 	virtual FString GetAssetPath();
 	virtual UObject* GetAssetToEdit();
 	virtual AActor* GetActorToFocus();
+	virtual FBox GetBoxToFocus();
 #endif
 
 protected:
